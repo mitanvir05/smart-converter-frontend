@@ -55,14 +55,14 @@ const FileUploader = () => {
       });
 
       setStatus('completed');
-      
+
       // SweetAlert Success Popup
       Swal.fire({
         icon: 'success',
         title: 'File Sent!',
         html: `Your file has been processed securely.<br/><br/>
                <a href="${res.data.downloadLink}" target="_blank" class="text-blue-500 underline font-bold">
-                 Test Download Link
+                 Download Link
                </a>`,
         confirmButtonText: 'Great!',
         confirmButtonColor: '#10b981' // Emerald green
@@ -80,7 +80,7 @@ const FileUploader = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden"
@@ -94,9 +94,9 @@ const FileUploader = () => {
         </div>
 
         <div className="p-8 space-y-6">
-          
+
           {/* Drop Zone */}
-          <div 
+          <div
             onClick={() => document.getElementById('fileInput').click()}
             className={cn(
               "border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-200 group",
@@ -104,7 +104,7 @@ const FileUploader = () => {
             )}
           >
             <input id="fileInput" type="file" className="hidden" onChange={handleFileChange} />
-            
+
             <div className="flex flex-col items-center gap-3">
               {file ? (
                 <>
@@ -127,8 +127,8 @@ const FileUploader = () => {
           {/* Form Fields */}
           <div className="space-y-3">
             <div className="relative">
-              <input 
-                type="email" 
+              <input
+                type="email"
                 placeholder="Sender Email"
                 className="w-full pl-4 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                 value={sender}
@@ -136,8 +136,8 @@ const FileUploader = () => {
               />
             </div>
             <div className="relative">
-              <input 
-                type="email" 
+              <input
+                type="email"
                 placeholder="Recipient Email"
                 className="w-full pl-4 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                 value={recipient}
@@ -161,13 +161,13 @@ const FileUploader = () => {
               ) : (
                 <div className="w-full bg-slate-100 rounded-full h-12 relative overflow-hidden flex items-center justify-center">
                   {/* The Blue Filling Bar */}
-                  <motion.div 
+                  <motion.div
                     className="absolute left-0 top-0 bottom-0 bg-blue-500/20"
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
                     transition={{ type: "spring", stiffness: 50 }}
                   />
-                  
+
                   {/* Text Status */}
                   <span className="relative z-10 font-semibold text-blue-700 flex items-center gap-2">
                     {status === 'compressing' ? (
