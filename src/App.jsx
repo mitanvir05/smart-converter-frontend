@@ -8,6 +8,10 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import About from './pages/About';
+import History from './pages/History';
+
+
+
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
 
@@ -45,10 +49,18 @@ function App() {
 
             {/* PROTECTED ROUTE - Move Tool to /dashboard */}
             <Route
-              path="/dashboard"
+              path="/send-file"
               element={
                 <ProtectedRoute>
                   <FileUploader />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/history"
+              element={
+                <ProtectedRoute>
+                  <History />
                 </ProtectedRoute>
               }
             />

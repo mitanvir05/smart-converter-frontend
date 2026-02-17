@@ -27,7 +27,7 @@ const Home = () => {
 
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
-                            to="/dashboard"
+                            to="/send-file"
                             className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition-all flex items-center justify-center gap-2 text-lg"
                         >
                             Start Sending Now <ArrowRight className="w-5 h-5" />
