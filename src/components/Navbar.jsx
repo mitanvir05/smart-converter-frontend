@@ -2,14 +2,42 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { Zap, LogOut, User, LogIn, UserPlus, LayoutDashboard, History } from 'lucide-react';
+import Swal from 'sweetalert2'; 
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout();
-    navigate('/login');
+    // Show confirmation dialog
+    Swal.fire({
+      title: 'Log out?',
+      text: "You will need to sign in again to access your files.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33', // Red for logout
+      cancelButtonColor: '#3085d6', // Blue for cancel
+      confirmButtonText: 'Yes, log out',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout();
+        navigate('/login');
+        
+        // Optional: Show a small success toast after logging out
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        });
+        Toast.fire({
+          icon: 'success',
+          title: 'Logged out successfully'
+        });
+      }
+    });
   };
 
   return (

@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { UserPlus, Mail, Lock, AlertCircle } from 'lucide-react';
+import Swal from 'sweetalert2'; 
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -24,7 +25,17 @@ const Register = () => {
     const res = await register(email, password);
     
     if (res.success) {
-      navigate('/'); // Redirect to Dashboard
+      // <--- 2. Show Success Alert
+      Swal.fire({
+        icon: 'success',
+        title: 'Account Created!',
+        text: 'Welcome to Smart Transfer.',
+        timer: 1500,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      }).then(() => {
+        navigate('/send-file'); 
+      });
     } else {
       setError(res.msg || 'Registration failed');
     }
